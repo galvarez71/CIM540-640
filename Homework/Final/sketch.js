@@ -592,7 +592,7 @@ function draw() {
     //YOU WIN
     if (shrimpCaught == true && eggCaught == true && broccoliCaught == true && porkCaught == true && noodleCaught == true && narutoCaught == true && mushroomCaught == true) {
       image(youWin, 0, 0);
-      winSound.plays(1);
+      //winSound.plays(1);
       shellSprite.velocity.y = 0;
       bugSprite.velocity.y = 0;
       sodaSprite.velocity.y = 0;
