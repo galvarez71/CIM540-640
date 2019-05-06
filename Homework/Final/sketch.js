@@ -12,7 +12,7 @@ var barArray = [];
 var mySound;
 var startSound;
 var popSound;
-var winSound;
+var winPlay = false;
 
 var page0, page1, page2, page3, page4;
 var currentPage = 0;
@@ -82,6 +82,9 @@ var instructions;
 var backButton;
 var tryAgainX;
 var tryAgainY;
+
+var lostSound;
+var lostPlay = false;
 //character location
 
 function preload() {
@@ -128,7 +131,7 @@ function preload() {
   startSound = loadSound("Assets/Music/start-music.wav");
   popSound = loadSound("Assets/Music/pop.mp3");
   winSound = loadSound("Assets/Music/kungfu-yell.mp3");
-
+  lostSound = loadSound("Assets/Music/game-over.wav");
 
 
 }
@@ -406,6 +409,9 @@ function draw() {
 
     //FISH - ENEMY 1
     if (imageSprite.overlap(fishSprite) == true) {
+      if (fishCaught == false) {
+        lostSound.play();
+      }
       fishCaught = true;
     } else {
       fishSprite.velocity.y = 2;
@@ -418,6 +424,9 @@ function draw() {
 
     //BUG - ENEMY 2
     if (imageSprite.overlap(bugSprite) == true) {
+      if (bugCaught == false) {
+        lostSound.play();
+      }
       bugCaught = true;
     } else {
       bugSprite.velocity.y = 3;
@@ -430,6 +439,9 @@ function draw() {
 
     //SHELL - ENEMY 3
     if (imageSprite.overlap(shellSprite) == true) {
+      if (shellCaught == false) {
+        lostSound.play();
+      }
       shellCaught = true;
     } else {
       shellSprite.velocity.y = 3;
@@ -442,6 +454,9 @@ function draw() {
 
     //SODA - ENEMY 4
     if (imageSprite.overlap(sodaSprite) == true) {
+      if (sodaCaught == false) {
+        lostSound.play();
+      }
       sodaCaught = true;
     } else {
       sodaSprite.velocity.y = 3;
@@ -592,7 +607,7 @@ function draw() {
     //YOU WIN
     if (shrimpCaught == true && eggCaught == true && broccoliCaught == true && porkCaught == true && noodleCaught == true && narutoCaught == true && mushroomCaught == true) {
       image(youWin, 0, 0);
-      //winSound.plays(1);
+      //winSound.play();
       shellSprite.velocity.y = 0;
       bugSprite.velocity.y = 0;
       sodaSprite.velocity.y = 0;
@@ -600,6 +615,10 @@ function draw() {
       imageSprite.velocity.x = 0;
       //set all the bad guy velocities to zero
       // or you can reset them back to the top of the screen
+      if (winPlay == false) {
+        winSound.play();
+      }
+      winPlay = true;
     }
 
     //FISH
@@ -612,6 +631,11 @@ function draw() {
       sodaSprite.velocity.y = 0;
       fishSprite.velocity.y = 0;
       imageSprite.velocity.x = 0;
+
+      if (lostPlay == false) {
+        lostSound.play();
+      }
+      lostPlay = true;
 
       // change the graphic for game over so you have an area for try again
       if(mouseIsPressed == true){
@@ -674,6 +698,11 @@ function draw() {
       fishSprite.velocity.y = 0;
       imageSprite.velocity.x = 0;
 
+      if (lostPlay == false) {
+        lostSound.play();
+      }
+      lostPlay = true;
+
       // change the graphic for game over so you have an area for try again
       if(mouseIsPressed == true){
       fishCaught = false;
@@ -734,6 +763,11 @@ function draw() {
       sodaSprite.velocity.y = 0;
       fishSprite.velocity.y = 0;
       imageSprite.velocity.x = 0;
+
+      if (lostPlay == false) {
+        lostSound.play();
+      }
+      lostPlay = true;
 
       // change the graphic for game over so you have an area for try again
       if(mouseIsPressed == true){
@@ -796,7 +830,7 @@ function draw() {
       fishSprite.velocity.y = 0;
       imageSprite.velocity.x = 0;
 
-      // change the graphic for game over so you have an area for try again
+            // change the graphic for game over so you have an area for try again
       if(mouseIsPressed == true){
       fishCaught = false;
       //reset all positions and all conditions for all of the things
