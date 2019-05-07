@@ -7,7 +7,7 @@ var tryButton;
 
 var imageSprite;
 
-var barArray = [];
+var barArray;
 
 var mySound;
 var startSound;
@@ -117,7 +117,7 @@ function preload() {
   youWin = loadImage("Assets/Background/you-win.png");
   instructions = loadImage("Assets/Background/instructions.png");
 
-  barArray[0] = loadImage("Assets/Bar/Bar.png");
+  barArray = loadImage("Assets/Bar/Bar.png");
 
   soundFormats('mp3', 'ogg', 'wav');
   mySound = loadSound("Assets/Music/game-music.mp3");
@@ -460,7 +460,7 @@ function draw() {
       sodaSprite.position.x = random(0, width);
     }
 
-    image(barArray[0], 200, 10);
+    image(barArray, 200, 10);
     drawSprites();
 
     //STEP 3
