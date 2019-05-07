@@ -117,14 +117,7 @@ function preload() {
   youWin = loadImage("Assets/Background/you-win.png");
   instructions = loadImage("Assets/Background/instructions.png");
 
-  barArray[0] = loadImage("Assets/Bar/Bar-0.png");
-  barArray[1] = loadImage("Assets/Bar/Bar-1.png");
-  barArray[2] = loadImage("Assets/Bar/Bar-2.png");
-  barArray[3] = loadImage("Assets/Bar/Bar-3.png");
-  barArray[4] = loadImage("Assets/Bar/Bar-4.png");
-  barArray[5] = loadImage("Assets/Bar/Bar-5.png");
-  barArray[6] = loadImage("Assets/Bar/Bar-6.png");
-  barArray[7] = loadImage("Assets/Bar/Bar-7.png");
+  barArray[0] = loadImage("Assets/Bar/Bar.png");
 
   soundFormats('mp3', 'ogg', 'wav');
   mySound = loadSound("Assets/Music/game-music.mp3");
