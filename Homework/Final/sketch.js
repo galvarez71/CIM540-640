@@ -85,6 +85,9 @@ var tryAgainY;
 
 var lostSound;
 var lostPlay = false;
+
+var startPlay = false;
+var myPlay = false;
 //character location
 
 function preload() {
@@ -132,19 +135,19 @@ function preload() {
 function setup() {
   // put setup code here
   var cnv = createCanvas(1154, 700);
-  var x = (windowWidth - width) / 4;
-  var y = (windowHeight - height) / 4;
+  var x = (windowWidth - width) / 2;
+  var y = (windowHeight - height) / 2;
   cnv.position(x, y);
   background(255, 0, 200);
 
-  startSound.setVolume(0.1);
-  startSound.play();
+  //startSound.setVolume(0.1);
+  //startSound.play();
   mySound.stop();
   page0 = createButton("Menu");
   page0.position(90, 250);
   page0.mousePressed(function() {
     currentPage = 0;
-    startSound.play();
+    //startSound.play();
     mySound.stop();
   });
   page1 = createButton("Start");
@@ -152,8 +155,8 @@ function setup() {
   page1.mousePressed(function() {
     currentPage = 1;
     //MUSIC HERE
-    mySound.setVolume(0.1);
-    mySound.play();
+    //mySound.setVolume(0.1);
+    //mySound.play();
     startSound.stop();
   });
   page2 = createButton("Instructions");
@@ -233,6 +236,11 @@ function draw() {
 
   if (currentPage == 0) {
     image(startScreen, 0, 0);
+    if (startPlay == false) {
+      startSound.setVolume(0.1);
+      startSound.play();
+    }
+    startPlay = true;
 
     // use this as a reference to go back from instructions to start page or start the game
     var distance = dist(mouseX, mouseY, 250, 595);
@@ -266,6 +274,12 @@ function draw() {
   } else if (currentPage == 1) {
     background("red");
     image(bgBlurry, 0, 0);
+    startSound.stop();
+    if (myPlay == false) {
+      mySound.setVolume(0.1);
+      mySound.play();
+    }
+    myPlay = true;
 
     //if mouse is to the left
     if (mouseX < imageSprite.position.x - 10) {
